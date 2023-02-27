@@ -1,34 +1,34 @@
+import { View, Text, StyleSheet, ImageBackground } from "react-native";
+import React from "react";
+import bg from "../../assets/images/BG.png";
+import Message from "../components/Message/Index";
+import messages from "../../assets/data/messages.json";
 import { FlatList } from "react-native";
-import { StyleSheet, Text, View } from "react-native";
-import ChatListItem from "../components/ChatListItem/Index";
-import chats from "../../assets/data/chats.json";
 
 const ChatScreen = () => {
   return (
-    <FlatList
-      data={chats}
-      renderItem={({ item }) => <ChatListItem chat={item} />}
-      style={{ width: "100%" }}
-    />
+    <ImageBackground source={bg} style={styles.bg}>
+      <FlatList
+        data={messages}
+        renderItem={({ item }) => <Message message={item} />}
+        style={styles.list}
+        inverted
+      />
+    </ImageBackground>
   );
 };
 
 export default ChatScreen;
 
 const styles = StyleSheet.create({
-  container: {
+  bg: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
+    resizeMode: "cover",
     justifyContent: "center",
+    alignItems: "center",
   },
-
-  title: {
-    fontSize: 30,
-    fontWeight: "bold",
-  },
-
-  text: {
-    fontSize: 20,
+  list: {
+    width: "100%",
+    padding: 10,
   },
 });
